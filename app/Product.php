@@ -3,16 +3,25 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+  use Overtrue\LaravelFavorite\Traits\Favoriteable;
+  use Kyslik\ColumnSortable\Sortable;
 
 class Product extends Model
 {
-     public function category()
-     {
-         return $this->belongsTo('App\Category');
-     }
+     use Favoriteable, Sortable;
      
-     public function reviews()
-     {
-         return $this->hasMany('App\Review');
-     }
+     public $sortable = [
+         'price', 
+         'updated_at'
+     ];
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
 }
