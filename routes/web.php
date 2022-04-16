@@ -39,8 +39,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
   if (env('APP_ENV') === 'production') {
       URL::forceScheme('https');
-<<<<<<< HEAD
   }
-=======
-  }
->>>>>>> a622bb43d0adcb9cba32880d34b48768ed0f0498
