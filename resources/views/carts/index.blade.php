@@ -22,11 +22,17 @@
 
         <div class="row">
             @foreach ($cart as $product)
+            
             <div class="col-md-2 mt-2">
                 <a href="{{route('products.show', $product->id)}}">
+                    @if ($product->options->image !== "")
+                    <img src="{{ asset('storage/products/'.$product->options->image) }}" class="img-fuild w-100">
+                    @else
                     <img src="{{ asset('img/dummy.png')}}" class="img-fuild w-100">
+                    @endif
                 </a>
             </div>
+            
             <div class="col-md-6 mt-4">
                 <h3 class="mt-4">{{$product->name}}</h3>
             </div>
@@ -34,7 +40,11 @@
                 <h3 class="w-100 mt-4">{{$product->qty}}</h3>
             </div>
             <div class="col-md-2">
+                @if ($product->options->carriage)
+                <h3 class="w-100 mt-4">￥{{$product->qty * ($product->price + env('CARRIAGE'))}}</h3>
+                @else
                 <h3 class="w-100 mt-4">￥{{$product->qty * $product->price}}</h3>
+                @endif
             </div>
             @endforeach            
         </div>
@@ -62,10 +72,29 @@
                  買い物を続ける
              </a>
              @if ($total > 0)
-             <button type="submit" class="btn samazon-submit-button">購入を確定する</button>
+            <div class="btn samazon-submit-button" data-toggle="modal" data-target="#buy-confirm-modal">購入を確定する</div>
              @else <!-- 合計金額が0円の場合は「購入を確定する」ボタンを非活性にしている(disabled) -->
-             <button type="submit" class="btn samazon-submit-button disabled">購入を確定する</button>
+            <div class="btn samazon-submit-button disabled" data-toggle="modal" data-target="#buy-confirm-modal">購入を確定する</div>
              @endif
+             
+             <!-- 以下モーダルのコード -->
+                
+            <div class="modal fade" id="buy-confirm-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">購入を確定しますか？</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn samazon-favorite-button border-dark text-dark" data-dismiss="modal">閉じる</button>
+                            <button type="submit" class="btn samazon-submit-button">購入</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
          </form>
     </div>
 </div>
