@@ -9,6 +9,7 @@
 
         <div class="row">
             @foreach ($favorites as $fav)
+            @if(App\Product::find($fav->favoriteable_id))
             <div class="col-md-8 mt-2">
                 <div class="d-inline-flex">
                     <a href="{{route('products.show', $fav)}}" class="w-25">
@@ -28,6 +29,7 @@
             <div class="col-md-2 d-flex align-items-center justify-content-end">
                 <button type="submit" class="btn samazon-favorite-add-cart text-white w-100">カートに入れる</button>
             </div>
+            @endif
             @endforeach
         </div>
 

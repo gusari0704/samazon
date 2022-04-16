@@ -30,11 +30,11 @@ Route::get('users/mypage/favorite', 'UserController@favorite')->name('mypage.fav
 Route::get('users/mypage/password/edit', 'UserController@edit_password')->name('mypage.edit_password');
 Route::put('users/mypage/password', 'UserController@update_password')->name('mypage.update_password');
 Route::delete('users/mypage/delete', 'UserController@destroy')->name('mypage.destroy');
-Route::get('products', 'ProductController@index')->name('products.index');
+
 Route::post('products/{product}/reviews', 'ReviewController@store');
 
 Route::get('products/{product}/favorite', 'ProductController@favorite')->name('products.favorite');
-
+Route::get('products', 'ProductController@index')->name('products.index');
 Route::get('products/{product}', 'ProductController@show')->name('products.show');
 Auth::routes(['verify' => true]);
 
