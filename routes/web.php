@@ -34,7 +34,7 @@ Route::delete('users/mypage/delete', 'UserController@destroy')->name('mypage.des
 Route::post('products/{product}/reviews', 'ReviewController@store');
 
 Route::get('products/{product}/favorite', 'ProductController@favorite')->name('products.favorite');
-Route::get('products', 'ProductController@index')->name('products.index');
+Route::get('product', 'ProductController@index')->name('products.index');
 Route::get('products/{product}', 'ProductController@show')->name('products.show');
 Auth::routes(['verify' => true]);
 
