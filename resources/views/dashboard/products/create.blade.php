@@ -59,7 +59,7 @@
     </form>
 
     <div class="d-flex justify-content-end">
-        <a href="/products">商品一覧に戻る</a>
+        <a href="/dashboard/products">商品一覧に戻る</a>
     </div>
 </div>
   <script type="text/javascript">
