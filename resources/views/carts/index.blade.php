@@ -26,7 +26,7 @@
             <div class="col-md-2 mt-2">
                 <a href="{{route('products.show', $product->id)}}">
                     @if ($product->options->image !== "")
-                    <img src="{{ asset('storage/products/'.$product->options->image) }}" class="img-fuild w-100">
+                    <img src="{{ Storage::disk('s3')->url($product->options->image) }}" class="img-fuild w-100">
                     @else
                     <img src="{{ asset('img/dummy.png')}}" class="img-fuild w-100">
                     @endif

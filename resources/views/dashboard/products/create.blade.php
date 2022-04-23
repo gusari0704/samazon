@@ -36,7 +36,7 @@
         </div>
               <div class="form-inline mt-4 mb-4 row">
             <label for="product-image" class="col-2 d-flex justify-content-start">画像</label>
-            @if ($product->image !== null)
+            @if (isset($product) && $product->image !== null)
             <img src="{{ asset('storage/products/'.$product->image) }}" id="product-image-preview" class="img-fluid w-25">
             <img src="{{ Storage::disk('s3')->url($product->image) }}" id="product-image-preview" class="img-fluid w-25">
             @else
