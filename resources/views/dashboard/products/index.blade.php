@@ -54,7 +54,7 @@
                     <th class="align-middle" scope="row">{{ $product->id }}</td>
                     <td>
                     @if ($product->image !== "")
-                    <img src="{{ asset('storage/products/'.$product->image) }}" class="w-80 img-fluid">
+                  $product->image = Storage::disk('s3')->putFile('public/products', $request->file('image'), 'public');
                     @else
                     <img src="{{ asset('img/')}}" class="w-80 img-fuild">
                     @endif
