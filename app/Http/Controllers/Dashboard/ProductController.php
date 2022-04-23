@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
+  use App\Imports\ProductsImport;
+  use Maatwebsite\Excel\Facades\Excel;
+
 class ProductController extends Controller
 {
     /**
@@ -187,4 +190,19 @@ class ProductController extends Controller
  
           return redirect()->route('dashboard.products.index');
     }
+
+ 
+      public function import(Product $product)
+      {
+          return view('dashboard.products.import');
+      }
+ 
+      public function import_csv(Request $request)
+      {
+          if ($request->hasFile('csv')) {
+              Excel::import(new ProductsImport, $request->file('csv'));
+              return redirect()->route('dashboard.products.import_csv')->with('flash_message', 'CSVでの一括登録が成功しました!');
+          }
+          return redirect()->route('dashboard.products.import_csv')->with('flash_message', 'CSVが追加されていません。CSVを追加してください。');
+      }
 }
